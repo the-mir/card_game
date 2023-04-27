@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp( MyApp());
@@ -49,12 +50,11 @@ class _AppBodyState extends State<AppBody> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
+           ClipRRect(
+             borderRadius: BorderRadius.circular(40.0) ,
+             child: Image.asset("assets/images/logo.jpeg",height: 90,fit: BoxFit.fitHeight,) ,
+           ),
 
-          Image.asset("assets/images/logo.jpeg"
-            ,
-            height: 100,
-            fit:BoxFit.fitHeight ,
-          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -78,6 +78,13 @@ class _AppBodyState extends State<AppBody> {
             });
           },
             child: Image.asset("assets/images/dealbutton.png"),
+          ),
+          Column(
+            children: [
+              Text("Play Time",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.white),),
+              SizedBox(height: 8.0,),
+              Text("$cl",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.white),),
+            ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -105,14 +112,27 @@ class _AppBodyState extends State<AppBody> {
               ),
             ],
           ),
-          TextButton(onPressed: (){
-            setState(() {
-              lValue=0;
-              rValue=0;
-            });
-          }, child:
-          Text("Reset",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),)
-          ),
+         Row(
+           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+           children: [
+             ElevatedButton(onPressed: (){
+               setState(() {
+                 lValue=0;
+                 rValue=0;
+                 leftcard=2;
+                 Rightcard=2;
+                 cl=0;
+               });
+             }, child:
+             Text("Reset",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),)
+             ),
+             ElevatedButton(onPressed: (){
+               SystemNavigator.pop();
+             }, child:
+             Text("Exit",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+             ),
+           ],
+         )
         ],
       ),
     );
